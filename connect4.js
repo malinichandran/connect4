@@ -10,7 +10,7 @@ let HEIGHT = 6;
 
 let currPlayer = 1; // active player: 1 or 2
 let board =[]; // array of rows, each row is array of cells  (board[y][x])
-
+let gameOver=false;
 /** makeBoard: create in-JS board structure:
  *    board = array of rows, each row is array of cells  (board[y][x])
  */
@@ -87,13 +87,15 @@ const placeInTable=(y, x)=> {
 
 const endGame=(msg) =>{
   // TODO: pop up alert message
-  alert(msg)
+  alert(msg);
+  gameOver=true;
 }
 
 /** handleClick: handle click of column top to play piece */
 
 const handleClick=(evt)=> {
   // get x from ID of clicked cell
+  if(!gameOver){
   let x = +evt.target.id;
   // get next spot in column (if none, ignore click)
   let y = findSpotForCol(x);
@@ -124,6 +126,7 @@ const handleClick=(evt)=> {
   }else{
       currPlayer=1
   }
+}
 }
 
 const checkForTie=()=>{
